@@ -25,6 +25,7 @@ public class LinkStrand implements IDnaStrand{
 		   initialize(a);
 	   }
 	   
+	   @Override
 	   public void initialize(String a)	{
 		   Node next = new Node(a);
 		   myFirst = next;
@@ -45,14 +46,17 @@ public class LinkStrand implements IDnaStrand{
 		   return this;
 	   }
 	   
+	   @Override
 	   public int getAppendCount()	{
 		   return myAppends;
 	   }
 	   
+	   @Override
 	   public long size()	{
 		   return mySize;
 	   }
 	   
+	   @Override
 	   public String toString()	{
 		   StringBuilder buf = new StringBuilder();
 		   Node working = myFirst;
@@ -63,7 +67,8 @@ public class LinkStrand implements IDnaStrand{
 		   return buf.toString();
 	   }
 	   
-	   public LinkStrand reverse()	{
+	   @Override
+	   public IDnaStrand reverse()	{
 		   if(myFirst == null)	{
 			   return this;
 		   }
@@ -91,9 +96,15 @@ public class LinkStrand implements IDnaStrand{
 		   return ret;
 	   }
 	   
+	   @Override
 	   public char charAt(int index)	{
-		   if(index < myIndex)	{
+		   if(index < 0 || index > mySize)	{
 			   throw new IndexOutOfBoundsException();
+		   }
+		   if(index < myIndex)	{
+			   myIndex = 0;
+			   myLocalIndex = 0;
+			   myCurrent = myFirst;
 		   }
 		   while(myIndex != index)	{
 			   myIndex++;
@@ -106,9 +117,10 @@ public class LinkStrand implements IDnaStrand{
 					}
 			   }
 			}
-	           return myCurrent.info.charAt(myLocalIndex);
+	       return myCurrent.info.charAt(myLocalIndex);
 		   }
 	   
+	   @Override
 	   public IDnaStrand getInstance(String a)	{
 		   return new LinkStrand(a);
 	   }
