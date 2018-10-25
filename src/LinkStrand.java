@@ -93,7 +93,14 @@ public class LinkStrand implements IDnaStrand{
 			   first = first.next;
 		   }
 		   
-		   return ret;
+		   LinkStrand ret2 = new LinkStrand(ret.myFirst.info);
+		   Node link = ret.myFirst.next;
+		   while(link != null)	{
+			   ret2.append(link.info);
+			   link = link.next;
+		   }
+		   
+		   return ret2;
 	   }
 	   
 	   @Override
