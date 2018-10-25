@@ -44,7 +44,11 @@ public class CodonProfiler {
 				ret[i] = 0;
 			}
 		}
-				
+/**
+ * This is the inefficient version. Commented out because it is not 
+ * code we want to run, but it is still helpful to look at. 
+ * Much of the effecient version is adapted from this version.				
+ */
 //		for(int k=0; k < codons.length; k++) {
 //			Iterator<Character> iter = strand.iterator();
 //			while (iter.hasNext()) {
